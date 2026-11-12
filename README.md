@@ -1,6 +1,11 @@
 # Computer Siksha
 
-**Computer Siksha** is a free, beginner-friendly computer-learning platform in Hindi and English. It includes a responsive website/PWA and an Android app that bundles the same lessons for offline use.
+**Computer Siksha** is a free, beginner-friendly computer-learning platform with a 12-language interface and a growing multilingual lesson catalogue. It includes a responsive website/PWA and an Android app that bundles the same lessons for offline use.
+
+## Language support
+- Interface language selector: English, Hindi, Spanish, Simplified Chinese, Arabic, French, Portuguese, Bengali, Russian, Urdu, Indonesian and Japanese.
+- Arabic and Urdu automatically use right-to-left document direction.
+- The current 36 lessons and 24 quizzes are fully available in English and Hindi. Other interface translations are present, but lesson and quiz translations for the remaining 10 languages are still pending; untranslated course text falls back to English. Do not advertise the course catalogue as fully translated yet.
 
 ## Current learning content
 - 12 computer education modules
