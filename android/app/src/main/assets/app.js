@@ -1,8 +1,5 @@
 let language="en";
-const labels={
-en:{eyebrow:"FREE DIGITAL EDUCATION",heroTitle:"Computer knowledge for everyone.",heroText:"Learn step by step with short lessons, practical tips and quick quizzes.",pathLabel:"YOUR LEARNING PATH",moduleHeading:"Explore computer topics",search:"Search lessons or topics…",progress:"Your progress",continue:"Continue learning",start:"Open module",lesson:"Lesson",quiz:"Quick quiz",check:"Check answers",next:"Next lesson",back:"Back to modules",done:"Mark lesson complete",completed:"Completed",of:"of",correct:"Correct",tryAgain:"Review and try again",allDone:"You completed all lessons!",source:"Learning is free. Your progress is saved on this device."},
-hi:{eyebrow:"मुफ्त डिजिटल शिक्षा",heroTitle:"हर किसी के लिए कंप्यूटर की शिक्षा।",heroText:"छोटे पाठ, उपयोगी सुझाव और क्विज के साथ कदम-दर-कदम सीखें।",pathLabel:"आपकी सीखने की यात्रा",moduleHeading:"कंप्यूटर के विषय जानें",search:"पाठ या विषय खोजें…",progress:"आपकी प्रगति",continue:"सीखना जारी रखें",start:"मॉड्यूल खोलें",lesson:"पाठ",quiz:"छोटा क्विज",check:"उत्तर जाँचें",next:"अगला पाठ",back:"मॉड्यूल पर वापस",done:"पाठ पूरा करें",completed:"पूरा हुआ",of:"में से",correct:"सही",tryAgain:"दोबारा पढ़ें और प्रयास करें",allDone:"आपने सभी पाठ पूरे कर लिए!",source:"शिक्षा मुफ्त है। आपकी प्रगति इसी डिवाइस पर सेव होती है।"}
-};
+const labels=UI_TEXT;
 const state={module:null,lesson:0,query:"",answers:{},score:null};
 const progressKey="computer-siksha-progress-v2";
 function getProgress(){try{return JSON.parse(localStorage.getItem(progressKey)||"[]")}catch{return[]}}
@@ -10,9 +7,10 @@ function saveProgress(id){const p=getProgress();if(!p.includes(id))p.push(id);lo
 function tr(obj){return obj[language]||obj.en}
 function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
 function render(){
- const t=labels[language];document.documentElement.lang=language;
+ const t=labels[language]||labels.en;document.documentElement.lang=language;document.documentElement.dir=(language==="ar"||language==="ur")?"rtl":"ltr";
  ["eyebrow","heroTitle","heroText","pathLabel","moduleHeading"].forEach(id=>document.getElementById(id).textContent=t[id]);
  document.getElementById("source").textContent=t.source;
+ document.getElementById("localeNote").textContent=t.localeNote;
  document.getElementById("search").placeholder=t.search;
  document.getElementById("language").value=language;
  document.getElementById("progressText").textContent=t.progress+": "+getProgress().length+" / 36";
