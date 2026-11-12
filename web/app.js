@@ -30,6 +30,7 @@ function render(){
  if(!host.children.length)host.append(el("p","empty",language==="hi"?"कोई परिणाम नहीं मिला।":"No matching lessons found."));
 }
 function renderLesson(host){
+ host.innerHTML="";
  const m=COURSE.modules.find(x=>x.id===state.module),data=LESSONS.find(x=>x.module===state.module),lesson=data.lessons[state.lesson],t=labels[language];
  const back=el("button","back", "← "+t.back);back.onclick=()=>{state.module=null;render()};host.append(back);
  host.append(el("p","eyebrow",m.id+" · "+t.lesson+" "+(state.lesson+1)+" / 3),el("h2","lesson-title",tr(lesson.title)),el("p","lesson-intro",tr(lesson.intro)));
