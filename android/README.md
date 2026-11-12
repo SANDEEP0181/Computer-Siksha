@@ -1,7 +1,12 @@
-# Android app starter
+# Android app
 
-Native Android starter built with Kotlin and Jetpack Compose.
+The Android app is a native Kotlin host around the same offline-first learning experience used by the website. The web learning files are bundled under `app/src/main/assets/`, so lessons do not require a network connection.
 
-Open this folder in Android Studio and sync Gradle. This first shell provides a bilingual module catalogue. Lesson detail screens, local Room progress storage, offline image downloads and quiz features are planned next.
+## Build
+From the repository root, with JDK 17 and Android SDK installed:
+```bash
+gradle -p android assembleDebug
+```
+The debug APK is created at `android/app/build/outputs/apk/debug/app-debug.apk`.
 
-Build an APK from Android Studio using **Build → Build Bundle(s) / APK(s) → Build APK(s)** after a successful Gradle sync.
+GitHub Actions also builds a debug APK on changes to `android/**` or `web/**` and uploads it as the workflow artifact. This is a test APK, not a Play Store signed release.
