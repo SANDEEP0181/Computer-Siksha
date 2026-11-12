@@ -33,7 +33,7 @@ function renderLesson(host){
  host.innerHTML="";
  const m=COURSE.modules.find(x=>x.id===state.module),data=LESSONS.find(x=>x.module===state.module),lesson=data.lessons[state.lesson],t=labels[language];
  const back=el("button","back", "← "+t.back);back.onclick=()=>{state.module=null;render()};host.append(back);
- host.append(el("p","eyebrow",m.id+" · "+t.lesson+" "+(state.lesson+1)+" / 3),el("h2","lesson-title",tr(lesson.title)),el("p","lesson-intro",tr(lesson.intro)));
+ host.append(el("p","eyebrow",m.id+" · "+t.lesson+" "+(state.lesson+1)+" / 3"),el("h2","lesson-title",tr(lesson.title)),el("p","lesson-intro",tr(lesson.intro)));
  const visual=el("div","diagram");visual.setAttribute("role","img");visual.setAttribute("aria-label",language==="hi"?"सीखने का मुख्य विचार":"Key learning concept");
  const diagrams={M01:"computer-cycle.svg",M02:"hardware-overview.svg",M06:"network-map.svg"};if(diagrams[state.module]){const img=el("img","lesson-diagram");img.src="assets/diagrams/"+diagrams[state.module];img.alt=language==="hi"?"कंप्यूटर का शैक्षिक डायग्राम":"Educational computer diagram";visual.append(img)}else{visual.innerHTML='<div class="flow-step">'+(language==="hi"?"समझें":"LEARN")+'</div><span>→</span><div class="flow-step">'+(language==="hi"?"अभ्यास करें":"PRACTISE")+'</div><span>→</span><div class="flow-step">'+(language==="hi"?"दोहराएँ":"REVIEW")+'</div>'}
  host.append(visual);
