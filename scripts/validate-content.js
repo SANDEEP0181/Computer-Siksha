@@ -44,6 +44,9 @@ for (const moduleId of Object.keys(QUIZZES || {})) {
       if (!question.q?.[locale] || !question.why?.[locale]) fail(question.id + " is missing " + locale + " question/explanation.");
       if (!Array.isArray(question.o) || question.o.length < 3 || question.o.some(option => !option?.[locale])) fail(question.id + " has incomplete " + locale + " answer options.");
     }
+    if (moduleId === "M01") for (const locale of ["es", "fr", "pt"]) {
+      if (!question.q?.[locale] || !question.why?.[locale] || question.o.some(option => !option?.[locale])) fail(question.id + " is missing " + locale + " quiz translation.");
+    }
     if (!Number.isInteger(question.a) || question.a < 0 || question.a >= question.o.length) fail(question.id + " has an invalid correct-answer index.");
   }
 }
