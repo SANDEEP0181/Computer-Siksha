@@ -27,7 +27,16 @@ for (const module of LESSONS || []) {
       if (!lesson.title?.[locale] || !lesson.intro?.[locale]) fail(lesson.id + " is missing " + locale + " title/intro.");
     }
     if (!Array.isArray(lesson.points) || lesson.points.length < 3) fail(lesson.id + " must have at least 3 learning points.");
-    for (const point of lesson.points || []) for (const locale of locales) if (!point[locales.indexOf(locale)]?.trim()) fail(lesson.id + " has an empty learning point.");
+    for (const point of lesson.points || []) {
+      for (const locale of locales) {
+        const value = Array.isArray(point) ? point[locales.indexOf(locale)] : point?.[locale];
+        if (!value?.trim()) fail(lesson.id + " has an empty " + locale + " learning point.");
+      }
+    }
+    if (module.module === "M01") for (const locale of ["es", "fr", "pt"]) {
+      if (!lesson.title?.[locale] || !lesson.intro?.[locale]) fail(lesson.id + " is missing " + locale + " title/intro translation.");
+      for (const point of lesson.points || []) if (!point?.[locale]) fail(lesson.id + " is missing " + locale + " learning point translation.");
+    }
   }
 }
 let quizCount = 0;
