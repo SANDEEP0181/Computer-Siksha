@@ -1,9 +1,11 @@
 let language="en";
+const languageKey="computer-siksha-language-v1";
+try{const savedLanguage=localStorage.getItem(languageKey);if(savedLanguage&&UI_TEXT[savedLanguage])language=savedLanguage}catch{}
 const labels=UI_TEXT;
 const state={module:null,lesson:0,query:"",answers:{},score:null};
 const progressKey="computer-siksha-progress-v2";
-function getProgress(){try{return JSON.parse(localStorage.getItem(progressKey)||"[]")}catch{return[]}}
-function saveProgress(id){const p=getProgress();if(!p.includes(id))p.push(id);localStorage.setItem(progressKey,JSON.stringify(p));render()}
+function getProgress(){try{const value=JSON.parse(localStorage.getItem(progressKey)||"[]");return Array.isArray(value)?value:[]}catch{return[]}}
+function saveProgress(id){const p=getProgress();if(!p.includes(id))p.push(id);try{localStorage.setItem(progressKey,JSON.stringify(p))}catch{}render()}
 function tr(obj){return obj[language]||obj.en}
 function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
 function render(){
@@ -18,7 +20,7 @@ function render(){
  const host=document.getElementById("content");host.innerHTML="";
  if(state.module){renderLesson(host);return}
  const q=state.query.toLowerCase();
- COURSE.modules.filter(m=>!q||JSON.stringify(m).toLowerCase().includes(q)||JSON.stringify(LESSONS.find(x=>x.module===m.id)).toLowerCase().includes(q)).forEach(m=>{
+ COURSE.modules.filter(m=>{const translatedTitle=COURSE_LABELS[language]?.titles[Number(m.id.slice(1))-1]||"";return !q||translatedTitle.toLowerCase().includes(q)||JSON.stringify(m).toLowerCase().includes(q)||JSON.stringify(LESSONS.find(x=>x.module===m.id)).toLowerCase().includes(q)}).forEach(m=>{
  const item=LESSONS.find(x=>x.module===m.id);const card=el("article","module-card");
  const head=el("div","module-icon",m.id.slice(1));card.append(head);
  const translated=COURSE_LABELS[language];
@@ -45,7 +47,7 @@ function renderLesson(host){
  if(state.score!==null){host.append(el("p",state.score===quiz.length?"result good":"result",t.correct+": "+state.score+" / "+quiz.length));quiz.forEach((q,i)=>{const detail=el("p","explanation",tr(q.why));host.append(detail)});if(state.score!==quiz.length)host.append(el("p","muted",t.tryAgain))}
  const done=el("button","secondary",t.done);done.onclick=()=>{saveProgress(m.id+"-"+state.lesson);if(state.lesson<2){state.lesson++;state.answers={};state.score=null;render()}else{state.module=null;render()}};host.append(done);
 }
-document.getElementById("language").addEventListener("change",e=>{language=e.target.value;render()});
+document.getElementById("language").addEventListener("change",e=>{language=e.target.value;try{localStorage.setItem(languageKey,language)}catch{}render()});
 document.getElementById("search").addEventListener("input",e=>{state.query=e.target.value;render()});
 document.getElementById("content").addEventListener("click",e=>{if(e.target.id==="unused")return});
 render();
