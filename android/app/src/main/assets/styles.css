@@ -2,4 +2,3 @@
 .lesson-diagram{display:block;width:100%;max-width:900px;height:auto;border-radius:14px}.diagram:has(.lesson-diagram){padding:8px;background:#eaf5ed}
 
 .locale-note{max-width:1100px;margin:12px auto 0;padding:0 5%;font-size:12px;color:#62766a;line-height:1.6}html[dir="rtl"] body{text-align:right}html[dir="rtl"] .brand{margin-right:0;margin-left:auto}html[dir="rtl"] .topbar{flex-direction:row-reverse}html[dir="rtl"] .module-card{align-items:flex-start}
-.locale-note{max-width:1100px;margin:12px auto 0;padding:0 5%;font-size:12px;color:#62766a;line-height:1.6}html[dir="rtl"] body{text-align:right}html[dir="rtl"] .brand{margin-right:0;margin-left:auto}html[dir="rtl"] .topbar{flex-direction:row-reverse}html[dir="rtl"] .module-card{align-items:flex-start}
