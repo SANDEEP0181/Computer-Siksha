@@ -1,4 +1,4 @@
-/* Interface translations for the 12-language rollout. Lesson translations are tracked separately. */
+/* First release interface: English and Hindi only. Other locale files are deferred. */
 const UI_TEXT={
   "en": {
     "language": "Language",
@@ -23,7 +23,7 @@ const UI_TEXT={
     "tryAgain": "Review and try again",
     "allDone": "You completed all lessons!",
     "source": "Learning is free. Your progress is saved on this device.",
-    "localeNote": "Course lessons are currently available in English and Hindi. More lesson translations are being added."
+    "localeNote": "The first release includes complete English and Hindi learning content."
   },
   "hi": {
     "language": "भाषा",
@@ -48,7 +48,7 @@ const UI_TEXT={
     "tryAgain": "दोबारा पढ़ें और प्रयास करें",
     "allDone": "आपने सभी पाठ पूरे कर लिए!",
     "source": "शिक्षा मुफ्त है। आपकी प्रगति इसी डिवाइस पर सेव होती है।",
-    "localeNote": "अभी पाठ हिंदी और अंग्रेज़ी में उपलब्ध हैं। अन्य भाषाओं के पाठों का अनुवाद जोड़ा जा रहा है।"
+    "localeNote": "पहले संस्करण में पूरा पाठ्यक्रम हिंदी और अंग्रेज़ी में उपलब्ध है।"
   },
   "es": {
     "language": "Idioma",
