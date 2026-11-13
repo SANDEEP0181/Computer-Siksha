@@ -79,7 +79,7 @@ if (quizCount !== 24) errors.push("Expected exactly 24 quizzes; found " + quizCo
 
 
 const uiContext = {};
-vm.runInNewContext(load("web/assets/locales.js") + "\\n;globalThis.__ui = UI_TEXT;", uiContext);
+vm.runInNewContext(load("web/assets/locales.js") + "\n;globalThis.__ui = UI_TEXT;", uiContext);
 const uiLanguages = Object.keys(uiContext.__ui || {}).sort();
 if (JSON.stringify(uiLanguages) !== JSON.stringify(["en", "hi"])) {
   errors.push("The first-release interface must expose English and Hindi only; found: " + uiLanguages.join(", "));
