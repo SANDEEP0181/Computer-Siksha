@@ -20,12 +20,11 @@ function render(){
  const host=document.getElementById("content");host.innerHTML="";
  if(state.module){renderLesson(host);return}
  const q=state.query.toLowerCase();
- COURSE.modules.filter(m=>{const translatedTitle=COURSE_LABELS[language]?.titles[Number(m.id.slice(1))-1]||"";return !q||translatedTitle.toLowerCase().includes(q)||JSON.stringify(m).toLowerCase().includes(q)||JSON.stringify(LESSONS.find(x=>x.module===m.id)).toLowerCase().includes(q)}).forEach(m=>{
+ COURSE.modules.filter(m=>!q||JSON.stringify(m).toLowerCase().includes(q)||JSON.stringify(LESSONS.find(x=>x.module===m.id)).toLowerCase().includes(q)).forEach(m=>{
  const item=LESSONS.find(x=>x.module===m.id);const card=el("article","module-card");
  const head=el("div","module-icon",m.id.slice(1));card.append(head);
- const translated=COURSE_LABELS[language];
- const moduleTitle=translated?translated.titles[Number(m.id.slice(1))-1]:tr(m.title);
- const moduleDescription=translated?translated.description:tr(m.description);
+ const moduleTitle=tr(m.title);
+ const moduleDescription=tr(m.description);
  card.append(el("h3","",moduleTitle),el("p","",moduleDescription));
  card.append(el("small","muted",getProgress().filter(x=>x.startsWith(m.id+"-")).length+" / 3 "+t.completed));
  const b=el("button","primary",t.start);b.onclick=()=>{state.module=m.id;state.lesson=0;state.answers={};state.score=null;render()};card.append(b);host.append(card)
