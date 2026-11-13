@@ -77,6 +77,34 @@ for (const moduleId of moduleIds) {
 }
 if (quizCount !== 24) errors.push("Expected exactly 24 quizzes; found " + quizCount);
 
+
+const uiContext = {};
+vm.runInNewContext(load("web/assets/locales.js") + "\\n;globalThis.__ui = UI_TEXT;", uiContext);
+const uiLanguages = Object.keys(uiContext.__ui || {}).sort();
+if (JSON.stringify(uiLanguages) !== JSON.stringify(["en", "hi"])) {
+  errors.push("The first-release interface must expose English and Hindi only; found: " + uiLanguages.join(", "));
+}
+const html = load("web/index.html");
+const selectorLanguages = [...html.matchAll(/<option value="([^"]+)"/g)].map((match) => match[1]).sort();
+if (JSON.stringify(selectorLanguages) !== JSON.stringify(["en", "hi"])) {
+  errors.push("The website language selector must contain English and Hindi only");
+}
+const androidPairs = [
+  ["web/index.html", "android/app/src/main/assets/index.html"],
+  ["web/styles.css", "android/app/src/main/assets/styles.css"],
+  ["web/app.js", "android/app/src/main/assets/app.js"],
+  ["web/sw.js", "android/app/src/main/assets/sw.js"],
+  ["web/assets/locales.js", "android/app/src/main/assets/assets/locales.js"],
+  ["web/assets/course-locales.js", "android/app/src/main/assets/assets/course-locales.js"],
+  ["web/assets/course-data.js", "android/app/src/main/assets/assets/course-data.js"],
+  ["web/assets/lesson-data.js", "android/app/src/main/assets/assets/lesson-data.js"]
+];
+for (const [webFile, androidFile] of androidPairs) {
+  if (load(webFile) !== load(androidFile)) {
+    errors.push("Android bundled asset is out of sync: " + androidFile);
+  }
+}
+
 if (errors.length) {
   console.error("Computer Siksha bilingual content validation FAILED:");
   errors.forEach((error) => console.error(" - " + error));
