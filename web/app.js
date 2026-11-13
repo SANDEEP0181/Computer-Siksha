@@ -40,7 +40,7 @@ function renderLesson(host){
  const visual=el("div","diagram");visual.setAttribute("role","img");visual.setAttribute("aria-label",language==="hi"?"सीखने का मुख्य विचार":"Key learning concept");
  const diagrams={M01:"computer-cycle.svg",M02:"hardware-overview.svg",M06:"network-map.svg"};if(diagrams[state.module]){const img=el("img","lesson-diagram");img.src="assets/diagrams/"+diagrams[state.module];img.alt=language==="hi"?"कंप्यूटर का शैक्षिक डायग्राम":"Educational computer diagram";visual.append(img)}else{visual.innerHTML='<div class="flow-step">'+(language==="hi"?"समझें":"LEARN")+'</div><span>→</span><div class="flow-step">'+(language==="hi"?"अभ्यास करें":"PRACTISE")+'</div><span>→</span><div class="flow-step">'+(language==="hi"?"दोहराएँ":"REVIEW")+'</div>'}
  host.append(visual);
- const ul=el("ul","key-points");lesson.points.forEach(p=>ul.append(el("li","",language==="hi"?p[1]:p[0])));host.append(ul);
+ const ul=el("ul","key-points");lesson.points.forEach(p=>ul.append(el("li","",typeof p==="object"?(p[language]||p.en):(language==="hi"?p[1]:p[0]))));host.append(ul);
  const quiz=QUIZZES[m.id];host.append(el("h3","quiz-heading",t.quiz));
  quiz.forEach((item,i)=>{const box=el("fieldset","question");box.append(el("legend","",tr(item.q)));item.o.forEach((opt,j)=>{const lab=el("label","choice");const radio=el("input");radio.type="radio";radio.name="q"+i;radio.value=j;radio.checked=state.answers[i]===j;radio.onchange=()=>{state.answers[i]=j;state.score=null};lab.append(radio,document.createTextNode(" "+tr(opt)));box.append(lab)});host.append(box)});
  const check=el("button","primary",t.check);check.onclick=()=>{state.score=quiz.reduce((s,q,i)=>s+(state.answers[i]===q.a?1:0),0);renderLesson(host)};host.append(check);
