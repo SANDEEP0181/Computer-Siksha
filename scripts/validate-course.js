@@ -95,7 +95,6 @@ const androidPairs = [
   ["web/app.js", "android/app/src/main/assets/app.js"],
   ["web/sw.js", "android/app/src/main/assets/sw.js"],
   ["web/assets/locales.js", "android/app/src/main/assets/assets/locales.js"],
-  ["web/assets/course-locales.js", "android/app/src/main/assets/assets/course-locales.js"],
   ["web/assets/course-data.js", "android/app/src/main/assets/assets/course-data.js"],
   ["web/assets/lesson-data.js", "android/app/src/main/assets/assets/lesson-data.js"]
 ];
