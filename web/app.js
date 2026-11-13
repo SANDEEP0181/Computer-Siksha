@@ -1,6 +1,6 @@
 let language="en";
 const languageKey="computer-siksha-language-v1";
-try{const savedLanguage=localStorage.getItem(languageKey);if(savedLanguage&&UI_TEXT[savedLanguage])language=savedLanguage}catch{}
+try{const savedLanguage=localStorage.getItem(languageKey);if(savedLanguage&&["en","hi"].includes(savedLanguage))language=savedLanguage}catch{}
 const labels=UI_TEXT;
 const state={module:null,lesson:0,query:"",answers:{},score:null};
 const progressKey="computer-siksha-progress-v2";
@@ -9,7 +9,7 @@ function saveProgress(id){const p=getProgress();if(!p.includes(id))p.push(id);tr
 function tr(obj){return obj[language]||obj.en}
 function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
 function render(){
- const t=labels[language]||labels.en;document.documentElement.lang=language;document.documentElement.dir=(language==="ar"||language==="ur")?"rtl":"ltr";
+ const t=labels[language]||labels.en;document.documentElement.lang=language;document.documentElement.dir="ltr";
  ["eyebrow","heroTitle","heroText","pathLabel","moduleHeading"].forEach(id=>document.getElementById(id).textContent=t[id]);
  document.getElementById("source").textContent=t.source;
  document.getElementById("localeNote").textContent=t.localeNote;
