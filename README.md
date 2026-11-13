@@ -1,26 +1,27 @@
 # Computer Siksha
 
-**Computer Siksha** is a free, beginner-friendly computer-learning platform with a 12-language interface and a growing multilingual lesson catalogue. It includes a responsive website/PWA and an Android app that bundles the same lessons for offline use.
+**Computer Siksha** is a free, beginner-friendly computer-learning platform. The first complete release is focused on **English and Hindi only**. The remaining 10 planned languages are deferred until a later phase.
 
-## Language support
-- Interface language selector: English, Hindi, Spanish, Simplified Chinese, Arabic, French, Portuguese, Bengali, Russian, Urdu, Indonesian and Japanese.
-- Arabic and Urdu automatically use right-to-left document direction.
-- The current 36 lessons and 24 quizzes are fully available in English and Hindi. Other interface translations are present, but lesson and quiz translations for the remaining 10 languages are still pending; untranslated course text falls back to English. Do not advertise the course catalogue as fully translated yet.
+## Phase 1 language scope
+- English (`en`)
+- Hindi (`hi`)
+- The website language selector displays only these two languages.
+- Course lessons and quizzes must have complete English and Hindi content. No other language is part of the current release scope.
 
-## Current learning content
+## Learning content target
 - 12 computer education modules
-- 36 short bilingual lessons (3 per module)
-- 24 multiple-choice practice questions (2 per module)
-- Original educational diagrams for the computer data cycle, hardware overview and a basic network
-- Search across module and lesson content
+- 36 lessons (3 per module), in English and Hindi
+- 24 multiple-choice quizzes (2 per module), in English and Hindi
+- Correct answers and explanations
+- Educational diagrams and practical examples
+- Search across modules and lessons
 - Progress saved locally on the current device
-- Offline-ready website cache and Android bundled assets
-- No login, payment, wallet or account required
+- Offline-ready website and Android app
 
 ## Platforms
 - Website/PWA: `web/`
 - Android Kotlin app: `android/`
-- Android app displays the same bundled offline web lessons inside a native Android shell.
+- Android app should bundle the same bilingual course data for offline learning.
 
 ## Run the website locally
 From the repository root:
@@ -36,7 +37,7 @@ Open http://localhost:8000.
 3. Push a change to `web/` or run **Deploy Computer Siksha website** in the Actions tab.
 4. Open the published URL shown by the successful deployment.
 
-The Pages workflow is committed. GitHub Pages must be enabled once in repository settings by a repository owner before the workflow can deploy.
+The Pages workflow is committed. A successful deployment run is still required to verify the public site.
 
 ## Build Android debug APK
 With JDK 17 and Android SDK installed:
@@ -45,17 +46,17 @@ gradle -p android assembleDebug
 ```
 APK output: `android/app/build/outputs/apk/debug/app-debug.apk`.
 
-GitHub Actions automatically builds a debug APK when Android or web files change and uploads it as the `computer-siksha-debug-apk` artifact. A debug APK is for testing; it is not a Play Store signed release.
+A debug APK is for testing; it is not a Play Store signed release.
 
 ## Privacy and limitations
-- Learning progress is stored in browser local storage on that device only. It is not synced between devices.
+- Learning progress is stored in browser local storage on that device only; it is not synced.
 - Clearing app/browser data may clear progress.
 - No account system, cloud sync, analytics or backend is included.
-- Review educational content before using it for formal training or certification.
-- App and website need real-device/browser QA before public production release.
+- Review educational content and complete real-device QA before public production release.
 
 ## Project documents
 - [Architecture](ARCHITECTURE.md)
 - [12-module syllabus](SYLLABUS.md)
 - [Phase 2 implementation notes](PHASE-2.md)
 - [Android build notes](android/README.md)
+- [English/Hindi release checklist](RELEASE-CHECKLIST.md)
