@@ -33,7 +33,7 @@ for (const module of LESSONS || []) {
         if (!value?.trim()) fail(lesson.id + " has an empty " + locale + " learning point.");
       }
     }
-    if (module.module === "M01") for (const locale of ["es", "fr", "pt"]) {
+    if (["M01", "M02"].includes(module.module)) for (const locale of ["es", "fr", "pt"]) {
       if (!lesson.title?.[locale] || !lesson.intro?.[locale]) fail(lesson.id + " is missing " + locale + " title/intro translation.");
       for (const point of lesson.points || []) if (!point?.[locale]) fail(lesson.id + " is missing " + locale + " learning point translation.");
     }
@@ -53,7 +53,7 @@ for (const moduleId of Object.keys(QUIZZES || {})) {
       if (!question.q?.[locale] || !question.why?.[locale]) fail(question.id + " is missing " + locale + " question/explanation.");
       if (!Array.isArray(question.o) || question.o.length < 3 || question.o.some(option => !option?.[locale])) fail(question.id + " has incomplete " + locale + " answer options.");
     }
-    if (moduleId === "M01") for (const locale of ["es", "fr", "pt"]) {
+    if (["M01", "M02"].includes(moduleId)) for (const locale of ["es", "fr", "pt"]) {
       if (!question.q?.[locale] || !question.why?.[locale] || question.o.some(option => !option?.[locale])) fail(question.id + " is missing " + locale + " quiz translation.");
     }
     if (!Number.isInteger(question.a) || question.a < 0 || question.a >= question.o.length) fail(question.id + " has an invalid correct-answer index.");
